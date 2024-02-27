@@ -3,6 +3,7 @@ const app = express();
 const port = 8080;
 const taskRouter = require("./routes/tasks");
 const connectDB = require("./db/connect");
+const notFound = require("./middleware/not-found");
 require("dotenv").config();
 
 // MiddleWare
@@ -12,13 +13,7 @@ app.use(express.json());
 // Routes
 app.use("/api/v1/tasks", taskRouter);
 
-app.get("/", (req, res) => res.send("Hello"));
-
-// app.get('/api/v1/tasks')
-// app.post('/api/v1/tasks')
-// app.get('/api/v1/tasks/:id')
-// app.put('/api/v1/tasks/:id')
-// app.delete('/api/v1/tasks/:id')
+app.use(notFound);
 
 const startServer = async () => {
   try {

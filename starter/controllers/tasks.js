@@ -45,6 +45,9 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).json({ msg: "No Task in DB with ID" });
+    }
     res.status(200).send(task);
   } catch (error) {
     res.status(500).json(error);
