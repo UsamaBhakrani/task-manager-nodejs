@@ -9,12 +9,6 @@ const connectDB = (url) => {
     .catch((err) => console.log(err));
 };
 
-const taskSchema = mongoose.Schema({
-  task: String,
-  isCompleted: Boolean,
-  date: { type: Date, default: Date.now },
-});
 
-const Task = mongoose.model("Tasks", taskSchema);
 
 module.exports = connectDB;
